@@ -1,0 +1,25 @@
+﻿@page
+@model Portfolio.Areas.Skills.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4 style="color: white;" >Skill</h4>
+<hr />
+<div class="row" style="color: white;">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+
+            <partial name="~/Pages/Shared/EditorTemplates/Skill.cshtml" model="@Model.Skill" />
+            
+            <div class="form-group mt-2">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+                <a class="btn btn-success" asp-page="Index">Retour à la liste</a>
+            </div>
+
+        </form>
+    </div>
+</div>

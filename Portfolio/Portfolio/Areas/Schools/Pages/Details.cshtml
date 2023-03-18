@@ -1,0 +1,43 @@
+﻿@page
+@model Portfolio.Areas.Schools.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>School</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.School.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.School.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.School.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.School.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.School.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.School.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.School.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.School.EndDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.School?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

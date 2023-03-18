@@ -1,0 +1,64 @@
+﻿@page
+@model Portfolio.Areas.Schools.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table" style="color: white;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Image.File)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Schools) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @if (null != item.Image)
+                {
+                    <img src="@Url.Content(item.Image.Path)" width="128" height="128">
+                }
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

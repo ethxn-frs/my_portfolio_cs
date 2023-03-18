@@ -1,0 +1,24 @@
+﻿@page
+@model Portfolio.Areas.Schools.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4 style="color: white" >School</h4>
+<hr />
+<div class="row" style="color: white">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+
+            <partial name="~/Pages/Shared/EditorTemplates/School.cshtml" model="@Model.School" />
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-success" asp-page="Index">Retour à la liste</a>
+            </div>
+        </form>
+    </div>
+</div>

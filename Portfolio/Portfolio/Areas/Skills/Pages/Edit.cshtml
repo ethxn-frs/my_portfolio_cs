@@ -1,0 +1,23 @@
+﻿@page
+@model Portfolio.Areas.Skills.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Skill</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            
+            <partial name="~/Pages/Shared/EditorTemplates/Skill.cshtml" model="@Model.Skill" />
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

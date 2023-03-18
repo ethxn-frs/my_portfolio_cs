@@ -1,0 +1,197 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    int cpt = 0;
+}ù
+
+<script type="text/javascript">
+    $(".image").click(function() {
+        $(".image").removeClass("active");
+        $(this).addClass("active");
+    })
+</script>
+
+<div class="presentation">
+    <img id="pdp" src="~/img/47C92497-2883-4291-8FB1-0955B3BCE28F.jpeg" alt="Photo de Profil">
+    <h1>Hi, I am Ethan Francois</h1>
+    <h3 style="font-size: 27px ;">French student at Saint-Vincent in second year of BTEC ISO</h3>
+    <h3 style="font-size: 27px ;">Aiming to become a fullsteak developper</h3>
+    <div class="links" style="display: flex; gap: 40px;">
+        <a target="_blank" href="#"><i class="fa-solid fa-file-pdf"></i></a>
+        <a target="_blank" href="https://www.linkedin.com/in/ethan-fran%C3%A7ois-5b168a263/"><i class="fa-brands fa-linkedin"></i></a>
+        <a target="_blank" href="https://github.com/ethxn-frs"><i class="fa-brands fa-github"></i></a>
+        <a target="_blank" href="#contact"><i class="fa-solid fa-comment"></i></a>
+    </div>
+</div>
+
+<div class="projects" style="gap:50px">
+    <h2>Projects</h2>
+    <p style="font-size: 26px">Here you can find all projects I have done in school, professional and personal context</p>
+    <div class="projectItems">
+        @foreach (var item in Model.Projects)
+        {
+            cpt++;
+            var active = "";
+            if (cpt == 1)
+                active = "active";
+            <div class="image @active" style="background: url(@item.Image.Path)center/cover">
+                <div class="text-container">
+                    <div class="text" style="position: absolute; bottom: 1rem;">
+                        <h3>@item.Name</h3>
+                        <p>@item.ShortDescription</p>
+                        <a href="détails">About it</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+    <div class="certifications">
+    <h2>Certifications and Training</h2>
+    <p style="font-size: 26px">Here you can find all certifications and formations I got or I am still doing</p>
+    <table class="table" style="color: white;">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Certifications[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certifications[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certifications[0].State)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Certifications) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="careers">
+    <h2>Career</h2>
+    <p style="font-size: 26px">Here you could find a chronology retracing my career and skills that I have acquired.</p>
+    <table class="table" style="color: white;">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills[0].Image.File)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skills[0].Date)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Skills)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (null != item.Image)
+                    {
+                        <img src="@Url.Content(item.Image.Path)" width="128" height="128">
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <table class="table" style="color: white;">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schools[0].Image.File)
+            </th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Schools) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @if (null != item.Image)
+                    {
+                        <img src="@Url.Content(item.Image.Path)" width="128" height="128">
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="contact">
+    <h2>Contact Me!</h2>
+    <p>Here is a contact form in case of you would like to contact me</p>
+    <form style="gap: 20px;">
+        <input type="text" name="firstname" required placeholder="Your Firstname" />
+        <input type="text" name="lastname" required placeholder="Your Lastname" />
+        <input type="text" name="email" required placeholder="Your Email" />
+        <input type="text" name="lastname" placeholder="Your Phonenumber (optionnal)" />
+        <input type="text" name="message" placeholder="Type your message here..." />
+        <div class="buttons">
+            <button type="reset">Cancel</button>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+
+</div>
+
